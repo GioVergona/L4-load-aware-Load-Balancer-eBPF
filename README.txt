@@ -1,3 +1,5 @@
+Final project for the Network Computing course at Politecnico di Milano. It's an eBPF program acting as a L4 load aware Load Balancer, identified by a VIP present in the config.yaml file acting such that, upon receiving speciifically UDP packets, it process them in order to add an additional IP header with the the same source IP address of the original packet and as destination the IP address of one of the backend servers still in the config.yaml. It is built so that packets belonging to the same flow will be redirected to the same server to grant consistency (avoiding TCP reordering) whereas if the flow is new it selects the least loaded backend server (*load = #packets/#flows*). After the packet has been enlarged and modified with the new IP header it is redirected on the same interface as it arrived to the load balancer. This scenario is implemented through the use of a Linux namespace.
+
 INSTRUCTIONS
 
 1) put the project folder in "Home/058172-network-computing-labs/ebpf-labs"
